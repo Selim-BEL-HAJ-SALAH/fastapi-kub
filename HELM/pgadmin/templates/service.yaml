@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "pgadmin.fullname" . }}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: {{ include "pgadmin.name" . }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.service.port }}
+      targetPort: 80

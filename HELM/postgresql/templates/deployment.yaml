@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "postgresql.fullname" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "postgresql.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "postgresql.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "postgresql.name" . }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          env:
+            - name: POSTGRES_USER
+              value: {{ .Values.postgresUser }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgresPassword }}
+            - name: POSTGRES_DB
+              value: {{ .Values.postgresDatabase }}
+          ports:
+            - containerPort: 5432

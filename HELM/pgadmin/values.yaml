@@ -1,0 +1,19 @@
+namespace: helm
+replicaCount: 1
+image:
+  repository: dpage/pgadmin4
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations: {}
+  hosts:
+    - host: your_subdomain
+      paths: []
+
+resources: {}

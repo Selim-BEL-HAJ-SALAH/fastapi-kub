@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgadmin-config
+  namespace: standard
+data:
+  PGADMIN_HOST: pgadmin
+  PGADMIN_PORT: "80"

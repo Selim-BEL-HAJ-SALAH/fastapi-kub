@@ -1,0 +1,19 @@
+namespace: helm
+replicaCount: 1
+image:
+  repository: your_fastapi_image_repository
+  tag: your_fastapi_image_tag
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations: {}
+  hosts:
+    - host: your_subdomain
+      paths: []
+
+resources: {}
