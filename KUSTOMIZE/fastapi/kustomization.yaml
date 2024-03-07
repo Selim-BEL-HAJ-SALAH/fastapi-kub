@@ -1,5 +1,0 @@
-namespace: kustomize
-resources:
-  - deployment.yaml
-  - service.yaml
-  - ingress.yaml  # Si nécessaire

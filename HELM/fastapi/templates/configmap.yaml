@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ include "fastapi.fullname" . }}
-  namespace: {{ .Values.namespace }}
-data:
-  database-url: "postgresql://admin:password@db:5432/storedb"

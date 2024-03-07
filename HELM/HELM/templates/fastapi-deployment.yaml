@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "my-helm-chart.fullname" . }}-fastapi-deployment
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.fastapi.replicas }}
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      containers:
+        - name: fastapi-container
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - secretRef:
+                name: {{ include "my-helm-chart.fullname" . }}-fastapi-credentials
+            - configMapRef:
+                name: {{ include "my-helm-chart.fullname" . }}-fastapi-config

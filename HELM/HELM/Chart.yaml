@@ -1,0 +1,4 @@
+apiVersion: v2
+name: my-helm-chart
+description: Un chart Helm pour déployer FastAPI, PostgreSQL et pgAdmin
+version: 0.1.0

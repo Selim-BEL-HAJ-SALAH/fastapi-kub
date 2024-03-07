@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "my-helm-chart.fullname" . }}-tls-ingress
+  namespace: {{ .Values.namespace }}
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: app1.meca.cloudns.ch
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "my-helm-chart.fullname" . }}-fastapi-service
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - app1.meca.cloudns.ch
+      secretName: tls-secret

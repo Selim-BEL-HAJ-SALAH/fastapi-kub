@@ -1,0 +1,22 @@
+image:
+  repository: selimbhs/fastapi-exam
+  tag: v.0.0.2
+
+fastapi:
+  replicas: 1
+
+postgresql:
+  replicas: 1
+  storage:
+    size: 10Gi
+
+pgadmin:
+  replicas: 1
+
+hpa:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 70
+
+namespace: helm

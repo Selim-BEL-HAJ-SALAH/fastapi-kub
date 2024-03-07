@@ -17,17 +17,11 @@ spec:
       containers:
       - name: postgresql
         image: postgres:12.0-alpine
-        env:
-        - name: POSTGRES_USER
-          valueFrom:
-            secretKeyRef:
-              name: postgresql-credentials
-              key: POSTGRES_USER
-        - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: postgresql-credentials
-              key: POSTGRES_PASSWORD
+        envFrom:
+        - secretRef:
+            name: postgresql-credentials
+        - configMapRef:
+            name: postgresql-config
         ports:
         - containerPort: 5432
         volumeMounts:

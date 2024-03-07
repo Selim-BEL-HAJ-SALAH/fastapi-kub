@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fastapi-config
+data:
+  DATABASE_HOST: "postgresql-service.kustomize.svc.cluster.local"
+  DATABASE_PORT: "5432"
+  DATABASE_NAME: "storedb"
